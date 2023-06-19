@@ -1,0 +1,9 @@
+def save_img(url, title, img_name):
+    # 去除 \u 字符
+    url = url.encode('utf-8').decode("unicode-escape")
+    try:
+        res = requests.get(url, headers=get_headers(), timeout=5)
+        with open(f'./download/{title}/{img_name}.png', "wb") as f:
+            f.write(res.content)
+    except Exception as e:
+        print(e)
